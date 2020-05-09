@@ -1,5 +1,6 @@
 import socket
 import math
+import timeit
 
 serverName = 'Localhost'
 serverPort = 12456
@@ -8,7 +9,7 @@ serverSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 serverSocket.bind(('localhost', 12456))
 print('The server is connected.')
 
-while 1:
+while True:
     print('Listening...')
 
     operator, clientAddress = serverSocket.recvfrom(bufferSize)
@@ -33,38 +34,88 @@ while 1:
         break
 
 if operator == b'+':
+    start = timeit.timeit()
     answer = float(operand1.decode()) + \
         float(operand2.decode())
+    end = timeit.timeit()
+    timeElapsed = end - start
+    timeElapsed = str(timeElapsed)
+
+    print(timeElapsed)
+
     answer = str(answer)
     serverSocket.sendto(answer.encode(), clientAddress)
+    serverSocket.sendto(timeElapsed.encode(), clientAddress)
 elif operator == b'-':
+    start = timeit.timeit()
     answer = float(operand1.decode()) - float(operand2.decode())
+    end = timeit.timeit()
+    timeElapsed = end - start
+    timeElapsed = str(timeElapsed)
+
     answer = str(answer)
     serverSocket.sendto(answer.encode(), clientAddress)
+    serverSocket.sendto(timeElapsed.encode(), clientAddress)
 elif operator == b'/':
+    start = timeit.timeit()
     answer = float(operand1.decode()) / float(operand2.decode())
+    end = timeit.timeit()
+    timeElapsed = end - start
+    timeElapsed = str(timeElapsed)
+
     answer = str(answer)
     serverSocket.sendto(answer.encode(), clientAddress)
+    serverSocket.sendto(timeElapsed.encode(), clientAddress)
 elif operator == b'*':
+    start = timeit.timeit()
     answer = float(operand1.decode()) * float(operand2.decode())
+    end = timeit.timeit()
+    timeElapsed = end - start
+    timeElapsed = str(timeElapsed)
+
     answer = str(answer)
     serverSocket.sendto(answer.encode(), clientAddress)
+    serverSocket.sendto(timeElapsed.encode(), clientAddress)
 elif operator == b'sin':
+    start = timeit.timeit()
     answer = math.sin(float(operand1.decode()))
+    end = timeit.timeit()
+    timeElapsed = end - start
+    timeElapsed = str(timeElapsed)
+
     answer = str(answer)
     serverSocket.sendto(answer.encode(), clientAddress)
+    serverSocket.sendto(timeElapsed.encode(), clientAddress)
 elif operator == b'cos':
+    start = timeit.timeit()
     answer = math.cos(float(operand1.decode()))
+    end = timeit.timeit()
+    timeElapsed = end - start
+    timeElapsed = str(timeElapsed)
+
     answer = str(answer)
     serverSocket.sendto(answer.encode(), clientAddress)
+    serverSocket.sendto(timeElapsed.encode(), clientAddress)
 elif operator == b'tan':
+    start = timeit.timeit()
     answer = math.sin(float(operand1.decode()))
+    end = timeit.timeit()
+    timeElapsed = end - start
+    timeElapsed = str(timeElapsed)
+
     answer = str(answer)
     serverSocket.sendto(answer.encode(), clientAddress)
+    serverSocket.sendto(timeElapsed.encode(), clientAddress)
 elif operator == b'cot':
+    start = timeit.timeit()
     answer = math.sin(float(operand1.decode()))
+    end = timeit.timeit()
+    timeElapsed = end - start
+    timeElapsed = str(timeElapsed)
+
     answer = str(answer)
     serverSocket.sendto(answer.encode(), clientAddress)
+    serverSocket.sendto(timeElapsed.encode(), clientAddress)
 
 print('Calculation finished.')
 serverSocket.close()

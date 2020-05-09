@@ -25,6 +25,8 @@ else:
     clientSocket.sendto(operand1.encode(), (serverName, serverport))
 
 answer, serverAddress = clientSocket.recvfrom(bufferSize)
+timeElapsed, serverAddress = clientSocket.recvfrom(bufferSize)
 print('Result: ', answer)
+print('Time elapsed: ', timeElapsed)
 
 clientSocket.close()
