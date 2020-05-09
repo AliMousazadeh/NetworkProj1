@@ -49,8 +49,6 @@ while True:
         timeElapsed = end - start
         timeElapsed = str(timeElapsed)
 
-        print(timeElapsed)
-
         answer = str(answer)
         serverSocket.sendto(answer.encode(), clientAddress)
         serverSocket.sendto(timeElapsed.encode(), clientAddress)
