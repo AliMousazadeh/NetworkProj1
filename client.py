@@ -34,6 +34,7 @@ while True:
         break
     else:
         print('Invalid operator.')
+        break
 
     answer, serverAddress = clientSocket.recvfrom(bufferSize)
     timeElapsed, serverAddress = clientSocket.recvfrom(bufferSize)
