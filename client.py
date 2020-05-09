@@ -2,22 +2,29 @@ import socket
 
 serverName = 'Localhost'
 serverport = 12456
+bufferSize = 2048
 clientSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 print('Traget IP: ', serverName)
 print('Target Port:', serverport)
 print('\n')
 
+operator = input('Select an operator (+ - / * sin cos tan cot): ')
 
-number1 = input('Input number1: ')
-number2 = input('Input number2: ')
-operator = input('Select an operator: (+ / * -) ')
+if operator == '+' or operator == '-' or operator == '/' or operator == '*':
+    operand1 = input('Input operand 1: ')
+    operand2 = input('Input operand 2: ')
 
-clientSocket.sendto(number1.encode(), (serverName, serverport))
-clientSocket.sendto(number2.encode(), (serverName, serverport))
-clientSocket.sendto(operator.encode(), (serverName, serverport))
+    clientSocket.sendto(operator.encode(), (serverName, serverport))
+    clientSocket.sendto(operand1.encode(), (serverName, serverport))
+    clientSocket.sendto(operand2.encode(), (serverName, serverport))
+else:
+    operand1 = input('Input operand: ')
 
-answer, serverAddress = clientSocket.recvfrom(2048)
-print('your result: ', answer)
+    clientSocket.sendto(operator.encode(), (serverName, serverport))
+    clientSocket.sendto(operand1.encode(), (serverName, serverport))
+
+answer, serverAddress = clientSocket.recvfrom(bufferSize)
+print('Result: ', answer)
 
 clientSocket.close()
