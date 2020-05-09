@@ -7,7 +7,7 @@ serverPort = 12456
 bufferSize = 2048
 serverSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 serverSocket.bind(('localhost', 12456))
-print('The server is connected.')
+print('Server started.')
 
 while True:
     print('Listening...')
@@ -42,10 +42,10 @@ while True:
         continue
 
     if operator == b'+':
-        start = time.clock()
+        start = time.perf_counter()
         answer = float(operand1.decode()) + \
             float(operand2.decode())
-        end = time.clock()
+        end = time.perf_counter()
         timeElapsed = end - start
         timeElapsed = str(timeElapsed)
 
@@ -55,9 +55,9 @@ while True:
         serverSocket.sendto(answer.encode(), clientAddress)
         serverSocket.sendto(timeElapsed.encode(), clientAddress)
     elif operator == b'-':
-        start = time.clock()
+        start = time.perf_counter()
         answer = float(operand1.decode()) - float(operand2.decode())
-        end = time.clock()
+        end = time.perf_counter()
         timeElapsed = end - start
         timeElapsed = str(timeElapsed)
 
@@ -65,9 +65,9 @@ while True:
         serverSocket.sendto(answer.encode(), clientAddress)
         serverSocket.sendto(timeElapsed.encode(), clientAddress)
     elif operator == b'/':
-        start = time.clock()
+        start = time.perf_counter()
         answer = float(operand1.decode()) / float(operand2.decode())
-        end = time.clock()
+        end = time.perf_counter()
         timeElapsed = end - start
         timeElapsed = str(timeElapsed)
 
@@ -75,9 +75,9 @@ while True:
         serverSocket.sendto(answer.encode(), clientAddress)
         serverSocket.sendto(timeElapsed.encode(), clientAddress)
     elif operator == b'*':
-        start = time.clock()
+        start = time.perf_counter()
         answer = float(operand1.decode()) * float(operand2.decode())
-        end = time.clock()
+        end = time.perf_counter()
         timeElapsed = end - start
         timeElapsed = str(timeElapsed)
 
@@ -85,9 +85,9 @@ while True:
         serverSocket.sendto(answer.encode(), clientAddress)
         serverSocket.sendto(timeElapsed.encode(), clientAddress)
     elif operator == b'sin':
-        start = time.clock()
+        start = time.perf_counter()
         answer = math.sin(float(operand1.decode()))
-        end = time.clock()
+        end = time.perf_counter()
         timeElapsed = end - start
         timeElapsed = str(timeElapsed)
 
@@ -95,9 +95,9 @@ while True:
         serverSocket.sendto(answer.encode(), clientAddress)
         serverSocket.sendto(timeElapsed.encode(), clientAddress)
     elif operator == b'cos':
-        start = time.clock()
+        start = time.perf_counter()
         answer = math.cos(float(operand1.decode()))
-        end = time.clock()
+        end = time.perf_counter()
         timeElapsed = end - start
         timeElapsed = str(timeElapsed)
 
@@ -105,9 +105,9 @@ while True:
         serverSocket.sendto(answer.encode(), clientAddress)
         serverSocket.sendto(timeElapsed.encode(), clientAddress)
     elif operator == b'tan':
-        start = time.clock()
+        start = time.perf_counter()
         answer = math.sin(float(operand1.decode()))
-        end = time.clock()
+        end = time.perf_counter()
         timeElapsed = end - start
         timeElapsed = str(timeElapsed)
 
@@ -115,9 +115,9 @@ while True:
         serverSocket.sendto(answer.encode(), clientAddress)
         serverSocket.sendto(timeElapsed.encode(), clientAddress)
     elif operator == b'cot':
-        start = time.clock()
+        start = time.perf_counter()
         answer = math.sin(float(operand1.decode()))
-        end = time.clock()
+        end = time.perf_counter()
         timeElapsed = end - start
         timeElapsed = str(timeElapsed)
 
@@ -129,4 +129,4 @@ while True:
 
 print('Program terminated.')
 serverSocket.close()
-print('Socket closed.')
+print('Server socket closed.')

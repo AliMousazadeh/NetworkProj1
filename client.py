@@ -41,3 +41,4 @@ while True:
     print('Time elapsed: ', timeElapsed)
 
 clientSocket.close()
+print('Client socket closed.')
